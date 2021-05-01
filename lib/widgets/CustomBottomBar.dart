@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:location/location.dart';
+import 'package:women_safety/providers/UserProvider.dart';
 import 'package:women_safety/utilities/constants.dart';
 import 'package:flashlight/flashlight.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -10,20 +12,26 @@ class CustomBottomBar extends StatefulWidget {
 }
 
 class _CustomBottomBarState extends State<CustomBottomBar> {
+  LocationData _currentPosition;
+  Location location = Location();
   bool isturnon = false;
   IconData flashicon = Icons.flash_off;
-  String sos = 'tel:+91 7977083785';
-  String message = "SOS! HELP! I am in danger! Here is my Location!";
-  List<String> recipents = ["+91 7977083785", "+91 9136897339"];
+  List<String> recipents = UserProvider.initialize().getContacts();
   Future<void> callnow() async {
-    if (await canLaunch(sos)) {
-      await launch(sos);
+    if (await canLaunch(recipents[1])) {
+      await launch(recipents[1]);
     } else {
       throw 'call not possible';
     }
   }
 
-  Future<void> _sendSMS(String message, List<String> recipents) async {
+  Future<void> _sendSMS(List<String> recipents) async {
+    _currentPosition = await location.getLocation();
+    String message =
+        "SOS! HELP! I am in danger! Here is my Location! https://google.com/maps/place/" +
+            _currentPosition.latitude.toString() +
+            " " +
+            _currentPosition.longitude.toString();
     String _result = await sendSMS(message: message, recipients: recipents)
         .catchError((onError) {
       print(onError);
@@ -43,7 +51,7 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
         children: [
           RawMaterialButton(
             onPressed: () {
-              _sendSMS(message, recipents);
+              _sendSMS(recipents);
             },
             elevation: 2.0,
             fillColor: Colors.white,

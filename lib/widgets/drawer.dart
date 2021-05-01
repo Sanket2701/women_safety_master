@@ -33,7 +33,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 style: kTitleStyle.copyWith(color: black),
               ),
               accountEmail: Text(
-                user.userModel.email,
+                user.userModel.email == null ? '' : user.userModel.email,
                 style: kSubTitleStyle.copyWith(fontSize: 18.0),
               ),
               decoration: BoxDecoration(color: white),

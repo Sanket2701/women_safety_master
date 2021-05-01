@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:women_safety/providers/UserProvider.dart';
-import 'package:women_safety/screens/Maps.dart';
+import 'package:women_safety/screens/HeatMapsScreen.dart';
 import 'package:women_safety/screens/RegisterScreen.dart';
 import 'package:women_safety/screens/ResetPasswordScreen.dart';
 import 'package:women_safety/utilities/constants.dart';
@@ -66,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 return Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => MapsScreen(),
+                    builder: (_) => HeatMapScreen(),
                   ),
                 );
               }
