@@ -36,7 +36,7 @@ class Map1 {
           dlong.toString() +
           "%2C" +
           dlat.toString() +
-          "?alternatives=true&geometries=geojson&steps=true&access_token=pk.eyJ1Ijoidmxha2hhbmkyOCIsImEiOiJja25ybDY2Z20wdTVxMnBuenlnbmswaXUxIn0.c_HoVkK6jd5M0cJasWNJWA";
+          "?alternatives=true&geometries=geojson&steps=true&access_token=YOUR_API_KEY";
       http.Response response = await http.get(Uri.parse(url));
       Map values = jsonDecode(response.body);
       var points =
@@ -85,7 +85,7 @@ class Map1 {
         dlo.toString() +
         "%2C" +
         dl.toString() +
-        "?alternatives=true&geometries=geojson&steps=true&access_token=pk.eyJ1Ijoidmxha2hhbmkyOCIsImEiOiJja25ybDY2Z20wdTVxMnBuenlnbmswaXUxIn0.c_HoVkK6jd5M0cJasWNJWA";
+        "?alternatives=true&geometries=geojson&steps=true&access_token=YOUR_API_KEY";
     polylinedistance.clear();
     http.Response response = await http.get(Uri.parse(url));
     Map values = jsonDecode(response.body);
